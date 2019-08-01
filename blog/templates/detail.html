@@ -1,0 +1,25 @@
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif|Noto+Serif+KR&display=swap" rel="stylesheet">
+<h1 style="font-family: 'Noto Serif KR', serif; text-align:center;">DETAIL PAGE - {{blog.id}}번째 흔적</h1>
+
+<div class="container" style="font-family: 'Noto Serif KR', serif; text-align:center;">
+    <h1>{{ blog.title }}</h1>
+    <p>{{ blog.pub_date }}</p>
+    <p>{{ blog.body }}</p>
+
+    <hr>
+    <a href="{% url 'comment_new' blog.pk %}">댓글 추가하기</a>
+
+    {% for comment in blog.comments.all %}
+      <div class="comment" style="font-family: 'Noto Serif KR', serif; text-align:center;">
+        <li>
+          {{ comment.text }}<small> by <strong>{{ comment.author }}</strong>, {{ comment.created_at }}</small>
+        </li>
+      </div>
+
+      {% empty %}
+        <p style="font-family: 'Noto Serif KR', serif; text-align:center;" >아직 댓글이 없습니다! :(</p>
+    {% endfor %}
+
+    <hr>
+    <a href="{% url 'home' %}" style="font-family: 'Noto Serif KR', serif; text-align:center;">돌아가기</a>
+</div>

@@ -1,0 +1,17 @@
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif|Noto+Serif+KR&display=swap" rel="stylesheet">
+{%extends 'base.html'%}
+<!--base.html을 쓸거에요!라고 선언해주기 navbar 불러옴.-->
+
+{%block contents%}
+<!--이 부분이 content에요! 라고 알리기-->
+<h1 style="font-family: 'Noto Serif', serif; text-align:center; font-size:70px;">Sweet & Sour Studio</h1>
+
+{% for blog in blogs.all %}
+    <div class="container" style="font-family: 'Noto Serif KR', serif; text-align:center;">
+        <h2>{{blog.id}}번째 흔적 - {{ blog.title }}_({{ blog.comments.count }})</h2>
+        <p style="color:lightslategray;">{{ blog.pub_date }}<br>--------------------</p>
+        <p>{{ blog.summary }}<a href="{% url 'detail' blog.id %}" style="color:lightskyblue;"> <br><br>...더보기</a></p>
+        <p><a href="{% url 'delete' blog.id %}" style="color:lightcoral;">삭제</a></p>
+    </div>
+{% endfor %}
+{%endblock%}
